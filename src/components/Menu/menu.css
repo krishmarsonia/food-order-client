@@ -1,0 +1,47 @@
+.kiimage {
+  width: 115%;
+  height: 125px;
+  border-radius: 17px;
+  display: inline-block;
+  /* float: left; */
+  position: relative;
+  right: 10px;
+  transition: transform 1.5s ease;
+}
+
+.kiimage:hover{
+  transform: scale(1.75);
+  margin-right: 20px;
+  overflow: hidden;
+  transition: transform 1.5s ease;
+  backface-visibility: hidden
+}
+
+
+.center {
+  text-align: center;
+  margin-top: 24px;
+}
+.inline {
+  display: inline-block;
+}
+.rows {
+  /* background-color: aliceblue; */
+  /* overflow: hidden; */
+  border-radius: 25px;
+  width: 75%;
+  position: relative;
+  left: 180px;
+  
+}
+
+.btmenu {
+  position: relative;
+  top: 25px;
+  float: right;
+  /* right: 15px; */
+}
+.midcol {
+  text-align: start;
+  margin-left: 30px;
+}

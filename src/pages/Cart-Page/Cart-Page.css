@@ -1,0 +1,40 @@
+.CartPageImg {
+  height: 110px;
+  width: 115px;
+}
+
+.cartFlex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartMargin{
+    margin: 0px 10px;
+}
+
+.CartLG{
+    font-weight: bolder;
+    /* color: black; */
+}
+.CartLG:hover{
+    cursor: pointer;
+}
+
+.CartPageAutoMargin{
+    margin: auto;
+}
+
+.CartCenter{
+    text-align: center;
+}
+
+.warningText{
+    color: red;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.cartPaymentButton{
+    margin-top: 20px;
+}

@@ -1,0 +1,38 @@
+.kiimage {
+    width: 115%;
+    height: 125px;
+    border-radius: 17px;
+    display: inline-block;
+    /* float: left; */
+    position: relative;
+    right: 10px;
+  }
+  
+  .center {
+    text-align: center;
+  }
+  .inline {
+    display: inline-block;
+  }
+  .rows {
+    /* background-color: aliceblue; */
+    /* overflow: hidden; */
+    border-radius: 25px;
+    width: 75%;
+    position: relative;
+    left: 180px;
+    
+  }
+  
+  .btmenu {
+    position: relative;
+    top: 25px;
+    float: right;
+  }
+  .midcol {
+    text-align: start;
+  }
+  
+  .MenuCenter{
+    text-align: center;
+  }

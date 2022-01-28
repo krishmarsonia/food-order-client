@@ -1,0 +1,78 @@
+.nav {
+  background: #56ccf2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #2f80ed,
+    #56ccf2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #2f80ed,
+    #56ccf2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  position: sticky;
+  top: 0;
+}
+
+.shop {
+  height: 30px;
+  /* margin-left: 50px; */
+  position: relative;
+  left: 15px;
+  /* margin-top: 1px; */
+  /* padding-top: 3px; */
+  /* bottom: 2px; */
+  /* align-items: flex-end; */
+  /* margin-top: 8px; */
+  overflow: hidden;
+}
+
+.shopCon{
+  height: 30px;
+  /* margin-left: 50px; */
+  position: relative;
+  left: 20px;
+  /* margin-top: 1px; */
+  /* padding-top: 3px; */
+  /* bottom: 2px; */
+  /* align-items: flex-end; */
+  /* margin-top: 8px; */
+  overflow: hidden;
+}
+
+
+.numCart{
+  height: 30px;
+  position: relative;
+  right: 2px;
+  /* margin-right: 6px; */
+  /* left: 682px; */
+  bottom: 1px;
+  /* align-items: flex-end; */
+  /* margin-top: 8px; */
+  color:white
+}
+
+.popover{
+  min-width: 27%;
+  /* align-items: flex-end; */
+  /* margin-right: 5px; */
+  max-height: 20%;
+}
+
+.heightPos{
+  max-height: 30%;
+}
+
+.popover-body {
+  height: 300px;
+  overflow-y: auto;
+  white-space:pre-wrap;
+}
+
+.signOut{
+  color: white;
+}
+.signOut:hover{
+  color: darkblue;
+}

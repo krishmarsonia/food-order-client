@@ -1,0 +1,23 @@
+.vertical {
+    border-left: 1px solid grey;
+    height: 400px;
+    /* position:absolute;
+    left: 45%; */
+    /* margin-left: 45%; */
+    margin: 0;
+    padding: 0;
+    width: 2px;
+}
+
+.SignInPageCenter{
+    text-align: center;
+}
+
+.SignInPagetitleText{
+    margin-left: 110px;
+}
+
+.SignUpPagetitleText{
+    margin-left: 50px;
+}
+
