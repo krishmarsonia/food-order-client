@@ -19,9 +19,8 @@ const HomePage = ({ selectCartLoaded, setCount }) => {
   useEffect(() => {
     if (selectCartLoaded === false && !(token === null)) {
       axios
-        .post(
+        .get(
           "http://localhost:5050/findcount",
-          {},
           {
             headers: {
               Authorization: "Bearer " + localStorage.getItem("token"),

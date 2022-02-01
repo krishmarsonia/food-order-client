@@ -63,8 +63,12 @@ function NavbarComponent(props) {
     axios.post("http://localhost:5050/cartAdd", {
       data: {
         cartArray: props.cart,
-        userid: props.userId,
+        // userid: props.userId,
       },
+    },{
+      headers:{
+        Authorization: 'Bearer ' + localStorage.getItem('token')
+      }
     });
 
     console.log(props.cart);

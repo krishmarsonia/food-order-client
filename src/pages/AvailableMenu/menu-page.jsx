@@ -20,21 +20,17 @@ const MenuPage = ({
   setCart,
   SetCartCount,
 }) => {
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
   const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
     if (selectCartLoaded === false && !(token === null)) {
       axios
-        .post(
-          "http://localhost:5050/findcart",
-          {},
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          }
-        )
+        .get("http://localhost:5050/findcart", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
         .then((res) => {
           console.log(res.data.cart.items);
           SetCartCount(0);

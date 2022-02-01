@@ -31,6 +31,8 @@ const Menu = ({ match, foodArr, setFoodData, AddItemToCart }) => {
   }
 
   console.log(foodArr);
+  // const objarr = Object.assign({}, foodArr.data.foodData);
+  // console.log(objarr);
 
   useEffect(() => {
     if (foodArr === null) {
@@ -41,7 +43,8 @@ const Menu = ({ match, foodArr, setFoodData, AddItemToCart }) => {
           },
         })
         .then((result) => {
-          // console.log(result)
+          console.log(result);
+
           // console.log(result.data.foodData);
           setFoodData(result);
 
