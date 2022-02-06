@@ -3,7 +3,9 @@ import axios from "axios";
 import { connect } from "react-redux";
 import { Row, Col } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
+import validator from "validator";
 
+import LabelInput from "../../components/label-input/label-input";
 import NavbarComponent from "../../components/Navbar/navbar";
 import { CartSet, CartEmpty } from "../../redux/cart/cart-actions";
 import SigninupForm from "../../components/Signinup-Form/signinup-Form";
@@ -27,6 +29,10 @@ const Signin = (props) => {
   const [errors, setError] = useState("");
   const [signUpError, setSignUpError] = useState("");
   const [userName, setUserName] = useState("");
+  const [validSignin, setValidSignin] = useState(false);
+  const [validSignup, setValidSignup] = useState(false);
+  const [validSigninPassword, setValidSigninPassword] = useState(false);
+  const [validSignupPassword, setValidSignupPassword] = useState(false);
   //runs 2 times
 
   const login = async () => {
@@ -75,7 +81,7 @@ const Signin = (props) => {
           password: signupPassword,
         },
       })
-      .then((result) => {
+      .then(() => {
         // console.log(result);
         // console.log(result.data);
         // props.CartEmpty();
@@ -100,34 +106,58 @@ const Signin = (props) => {
   };
 
   const signupEmailChange = (e) => {
+    if (!validator.isEmail(signupEmail)) {
+      console.log("hii");
+      setValidSignup(true);
+    } else {
+      setValidSignup(false);
+    }
     setError("");
     setSignUpError("");
     setSignupEmail(e.target.value);
   };
 
   const signupPasswordChange = (e) => {
+    if (!validator.isStrongPassword(signupPassword, { minLength: 6 })) {
+      setValidSignupPassword(true);
+    } else {
+      setValidSignupPassword(false);
+    }
     setError("");
     setSignUpError("");
     setSignupPassword(e.target.value);
   };
 
   const SignupSubmit = () => {
+    if(!(validSignup) && !(validSignupPassword))
     signup();
   };
 
   const emailchange = (e) => {
     // setEmail()
     // console.log(e.target.value)
+    if (!validator.isEmail(emails)) {
+      setValidSignin(true);
+    } else {
+      setValidSignin(false);
+    }
     setError("");
     setSignUpError("");
     setEmail(e.target.value);
   };
   const passChange = (e) => {
+    if (!validator.isStrongPassword(passwords, { minLength: 6 })) {
+      setValidSigninPassword(true);
+    } else {
+      setValidSigninPassword(false);
+    }
     setError("");
     setSignUpError("");
     setPassword(e.target.value);
   };
   const logSubmit = () => {
+    // if(!(validSignin) && !(validSigninPassword)){
+    // }
     login();
   };
 
@@ -185,7 +215,7 @@ const Signin = (props) => {
         <Col xs="6">
           <h1 className="SignInPagetitleText">Login In</h1>
 
-          {siginData.map((sindata) => {
+          {/* {siginData.map((sindata) => {
             return (
               <div key={sindata.id}>
                 <SigninupForm
@@ -197,21 +227,49 @@ const Signin = (props) => {
                 />
               </div>
             );
-          })}
+          })} */}
+
+          <label htmlFor="Email">E-mail</label>
+
+          <LabelInput
+            InputName="E-mail"
+            labelFor="Email"
+            onchange={emailchange}
+            value={emails}
+            type="email"
+            valid={validSignin}
+          />
+
+          <p className="text-muted">
+            We'll never share your email with anyone else.
+          </p>
+
+          <label htmlFor="Password">Password</label>
+
+          <LabelInput
+            InputName="Password"
+            labelFor="Password"
+            onchange={passChange}
+            value={passwords}
+            type="password"
+            valid={validSigninPassword}
+          />
+
           <input
             type="button"
-            value="Submit"
+            value="Login"
             onClick={logSubmit}
             className="btn btn-primary"
           />
-          <br /><br />
+          <br />
+          <br />
           <p className="text-danger">{errors}</p>
         </Col>
-       
+
         <Col xs="6">
           <h1 className="SignUpPagetitleText">Sign Up / Register</h1>
 
-          {signupData.map((supdata) => {
+          {/* {signupData.map((supdata) => {
             return (
               <div key={supdata.id}>
                 <SigninupForm
@@ -223,12 +281,56 @@ const Signin = (props) => {
                 />
               </div>
             );
-          })}
-          
+          })} */}
+
+          <label htmlFor="UserName">UserName</label>
+
+          <LabelInput
+            InputName="UserName"
+            labelFor="UserName"
+            onchange={signupUserNameChange}
+            value={userName}
+            type="text"
+          />
+
+          <label htmlFor="Email">E-mail</label>
+
+          <LabelInput
+            InputName="eg. xyz_01@gmail.com"
+            labelFor="Email"
+            onchange={signupEmailChange}
+            value={signupEmail}
+            type="email"
+            valid={validSignup}
+          />
+
+          <p className="text-muted">
+            We'll never share your email with anyone else.
+          </p>
+
+          <label htmlFor="Password">Password</label>
+
+          <LabelInput
+            InputName="eg. Abcd@123"
+            labelFor="Password"
+            onchange={signupPasswordChange}
+            value={signupPassword}
+            type="password"
+            valid={validSignupPassword}
+          />
+          {validSignupPassword ? (
+            <p className="text-danger w-75">
+              Password must be 7 character long and should contain atleast one
+              unique character one upercase character and one number
+            </p>
+          ) : (
+            ""
+          )}
+
           <input
             className="btn btn-primary"
             type="button"
-            value="submit"
+            value="Sign-up"
             onClick={SignupSubmit}
           />
           <br />
@@ -251,7 +353,6 @@ const mapDispacthToProps = (dispatch) => ({
   setUserId: (id) => dispatch(setUserId(id)),
   CartSet: (cart) => dispatch(CartSet(cart)),
   CartEmpty: () => dispatch(CartEmpty()),
-  
 });
 
 export default connect(null, mapDispacthToProps)(Signin);

@@ -17,7 +17,7 @@ function CarouselComponent({history}) {
       <Carousel>
         <Carousel.Item data-to='food/12' className = 'imgresize stretched-link hovpoi' onClick={clickHandler}>
           <img
-            className="img-responsive center-block w-100" height={470}
+            className="img-responsive center-block w-100" height={570}
             src="https://images.unsplash.com/photo-1574126154517-d1e0d89ef734?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8OHx8fGVufDB8fHx8&w=1000&q=80"
             alt="First slide"
           />
@@ -28,7 +28,7 @@ function CarouselComponent({history}) {
         </Carousel.Item>
         <Carousel.Item data-to='food/14' className = 'imgresize stretched-link hovpoi' onClick={clickHandler}>
           <img
-            className="img-responsive center-block w-100" height={470}
+            className="img-responsive center-block w-100" height={570}
             src="https://www.pngitem.com/pimgs/m/638-6384918_thrill-hunt-alfredo-pasta-hd-png-download.png"
             alt="Second slide"
           />
@@ -39,7 +39,7 @@ function CarouselComponent({history}) {
         </Carousel.Item>
         <Carousel.Item data-to='food/16' className='imgresize stretched-link hovpoi' onClick={clickHandler}>
           <img
-            className="img-responsive center-block w-100" height={470}
+            className="img-responsive center-block w-100" height={570}
             src="https://i.ytimg.com/vi/0p7N5MSAnjE/maxresdefault.jpg"
             alt="Third slide"
           />

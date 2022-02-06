@@ -19,14 +19,11 @@ const HomePage = ({ selectCartLoaded, setCount }) => {
   useEffect(() => {
     if (selectCartLoaded === false && !(token === null)) {
       axios
-        .get(
-          "http://localhost:5050/findcount",
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          }
-        )
+        .get("http://localhost:5050/findcount", {
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        })
         .then((res) => {
           console.log(res);
           setCount(res.data.quantity);
@@ -35,7 +32,7 @@ const HomePage = ({ selectCartLoaded, setCount }) => {
         .catch((err) => {
           console.log(err);
           setCount(0);
-          setIsLoading(false)
+          setIsLoading(false);
         });
     } else {
       setIsLoading(false);
@@ -46,15 +43,21 @@ const HomePage = ({ selectCartLoaded, setCount }) => {
       {isLoading ? (
         <WithSpinner isLoading={true} />
       ) : (
-        <div className="container HomeCenter">
-          <NavbarComponent />
-          <br />
-          {/* name */}
-          <h1 className="title">Welcome to food Ordering website</h1>
-          <br />
+        <div>
+          <div className="container HomeCenter">
+            <NavbarComponent />
+            <br />
+            {/* name */}
+            <h1 className="title">Welcome to food Ordering website</h1>
+            <br />
+          </div>
+
           <CarouselComponent />
-          <br /> <br />
-          <Cards />
+
+          <div className="container HomeCenter">
+            <br /> <br />
+            <Cards />
+          </div>
         </div>
       )}
     </div>

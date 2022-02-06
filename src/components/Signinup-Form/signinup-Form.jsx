@@ -3,7 +3,7 @@ import React from "react";
 import LabelInput from "../label-input/label-input";
 
 const SigninupForm = (sinupdata) => {
-  const { name, onchag, type, val, child } = sinupdata;
+  const { name, onchag, type, val, child, } = sinupdata;
   const mutedtext = (name) => {
     if (name === "Email") {
       return (

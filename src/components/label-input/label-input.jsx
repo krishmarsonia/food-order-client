@@ -1,13 +1,14 @@
 import React from "react";
-import { InputGroup,FormControl } from "react-bootstrap";
+import { InputGroup, FormControl } from "react-bootstrap";
 
-import './labelInput.css'
+import "./labelInput.css";
 
-const LabelInput = ({size, InputName, labelFor, type, onchange, value}) => {
+const LabelInput = ({ size, InputName, labelFor, type, onchange, value, valid }) => {
   return (
     <div>
-      <InputGroup className={'w-75 mb-3'} >
+      <InputGroup className={"w-75 mb-3"}>
         <FormControl
+          className = {valid ? "border border-danger" : ''}
           // size="w-75"
           autoComplete="ON"
           placeholder={InputName}

@@ -2,11 +2,11 @@ h3 {
   color: ivory;
 }
 
-.hovpoi:hover {
+/* .hovpoi:hover {
   cursor: pointer;
   transform: scale(1.75);
   margin-right: 20px;
   overflow: hidden;
   transition: transform ease 1.5s;
   backface-visibility: hidden;
-}
+} */
