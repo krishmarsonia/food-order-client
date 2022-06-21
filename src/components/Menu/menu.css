@@ -10,7 +10,7 @@
 }
 
 .kiimage:hover{
-  transform: scale(1.75);
+  transform: scale(1.50);
   margin-right: 20px;
   overflow: hidden;
   transition: transform 1.5s ease;

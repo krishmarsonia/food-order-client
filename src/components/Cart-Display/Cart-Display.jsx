@@ -42,7 +42,7 @@ const CartDisplay = ({cditem, dec, inc, rem}) => {
                   className="my-auto CartLG"
                   onClick={() => rem(cditem)}
                 >
-                  <h5>×</h5>
+                  <span>×</span>
                 </Col>
                 <br />
               </Row>

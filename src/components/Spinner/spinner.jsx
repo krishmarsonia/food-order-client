@@ -12,7 +12,9 @@ const WithSpinner = ({isLoading}) => {
   return (
     <div className='spinner-position'>
       {/* {console.log(isLoading)} */}
+      <center>
       <Spinner animation="border" />
+      </center>
     </div>
   );
 };

@@ -29,6 +29,7 @@ import {
 } from "../../redux/cart/cart-selectors";
 import {
   setAdminFalse,
+  setAdmin,
   setCurrentUserName,
   setFoodData,
   setUserId,
@@ -76,7 +77,7 @@ function NavbarComponent(props) {
     localStorage.removeItem("userName");
     props.CartEmpty();
     props.setCurrentUserName("");
-    props.setAdminFalse();
+    props.setAdmin(false);
     props.setfoodArr(null);
     props.setUserId("");
     props.SetCartCount(0);
@@ -174,7 +175,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setCurrentUserName: (UserName) => dispatch(setCurrentUserName(UserName)),
   CartEmpty: () => dispatch(CartEmpty()),
-  setAdminFalse: () => dispatch(setAdminFalse()),
+  setAdmin: (admin) => dispatch(setAdmin(admin)),
   setfoodArr: (food) => dispatch(setFoodData(food)),
   setUserId: (id) => dispatch(setUserId(id)),
   SetCartCount: (val) => dispatch(SetCartCount(val)),

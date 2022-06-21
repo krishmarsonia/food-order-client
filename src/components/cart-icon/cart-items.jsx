@@ -67,7 +67,7 @@ const CartItemOnNav = ({
   return (
     <div>
       {isLoading ? (
-        <WithSpinner isLoading={true} />
+        <WithSpinner isLoading={true} className="withspinneralign"/>
       ) : (
         <div>
           {cartItems.length ? (
@@ -78,7 +78,7 @@ const CartItemOnNav = ({
                     <img className="testImg" src={it.imageUrl} alt={it.name} />
                   </Col>
                   <Col style={{ margin: "auto" }}>{it.name}</Col>
-                  <Col style={{ margin: "auto" }}>×{it.quantity}</Col>
+                  <Col style={{ margin: "auto" }} md="auto">×{it.quantity}</Col>
                 </Row>
                 <br />
               </Container>

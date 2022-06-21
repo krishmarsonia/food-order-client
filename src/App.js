@@ -19,36 +19,39 @@ import "./App.css";
 //   }
 // };
 
-function App(props) {
-  // console.log(props.Admin);
-  console.log(props.user)
-  //state ni magahmari and redirect kem nathi thatu
-  return (
-    <div className="App">
-      {/* {getLayout(props.user)} */}
-      {/* <Provider store={store}> */}
-      <Switch>
-        <Route exact path="/home" component={HomePage} />
-        <Route path="/food/:foodId" component={MenuPage} />
-        <Route
-          exact
-          path="/"
-          
-          render={() => (props.userName ? <Redirect to='/home' /> : <Signin />)}
-        />
-        <Route
-          path="/adminfood"
-          render={() => (!props.Admin ? <Redirect to="/" /> : <AdminFood />)}
-        />
-        <Route
-          path="/cart"
-          render={() => (!props.userName ? <Redirect to="/" /> : <CartPage />)}
-        />
-      </Switch>
-      {/* </Provider> */}
-    </div>
-  );
-}
+class App extends React.Component {
+  // constructor(){
+  // }
+
+  render(){
+    const { userName, Admin } = this.props
+    return (
+      <div className="App">
+        {/* {getLayout(props.user)} */}
+        {/* <Provider store={store}> */}
+        <Switch>
+          <Route exact path="/home" component={HomePage} />
+          <Route path="/food/:foodId" component={MenuPage} />
+          <Route
+            exact
+            path="/"
+            
+            render={() => (userName ? <Redirect to='/home' /> : <Signin />)}
+          />
+          <Route
+            path="/adminfood"
+            render={() => (!Admin ? <Redirect to="/" /> : <AdminFood />)}
+          />
+          <Route
+            path="/cart"
+            render={() => (!userName ? <Redirect to="/" /> : <CartPage />)}
+          />
+        </Switch>
+        {/* </Provider> */}
+      </div>
+    );
+  }
+  }
 
 const mapStatetoProps = (state) => ({
   Admin: selectAdmin(state),

@@ -21,3 +21,13 @@ export const selectFoodData = createSelector(
     [selectUser],
     (user) => user.foodData
 )
+
+export const selectisfetching = createSelector(
+    [selectUser],
+    (user) => user.isFetching
+)
+
+export const selectboolFoodData = createSelector(
+    [selectUser],
+    (user) => !!user.foodData
+)
