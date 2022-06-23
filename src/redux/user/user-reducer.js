@@ -9,7 +9,8 @@ const INITIAL_STATE = {
   foodData: null,
   isFetching: false,
   errorMessage: undefined,
-  authError: '',
+  authError: "",
+  token: null,
 };
 
 const UserReducer = (state = INITIAL_STATE, action) => {
@@ -20,10 +21,10 @@ const UserReducer = (state = INITIAL_STATE, action) => {
         userName: action.payload,
       };
     case UserActionTypes.Set_Admin:
-      return{
+      return {
         ...state,
-        admin: action.payload
-      }
+        admin: action.payload,
+      };
     // case UserActionTypes.Set_Admin_True:
     //   return {
     //     ...state,
@@ -49,15 +50,20 @@ const UserReducer = (state = INITIAL_STATE, action) => {
         ...state,
         foodData: action.payload,
       };
+    case UserActionTypes.Set_Token:
+      return {
+        ...state,
+        token: action.payload,
+      };
     case UserActionTypes.Set_IsFetching:
       return {
         ...state,
         isFetching: action.payload,
       };
     case UserActionTypes.Set_AuthError:
-      return{
+      return {
         ...state,
-        authError: action.payload
+        authError: action.payload,
       };
     case UserActionTypes.Set_FetchCollections_Start:
       return {
@@ -76,7 +82,6 @@ const UserReducer = (state = INITIAL_STATE, action) => {
         isFetching: false,
         errorMessage: action.payload,
       };
-    
 
     default:
       return state;

@@ -22,6 +22,11 @@ export const selectFoodData = createSelector(
     (user) => user.foodData
 )
 
+export const selectToken = createSelector(
+    [selectUser],
+    (user) => user.token
+)
+
 export const selectisfetching = createSelector(
     [selectUser],
     (user) => user.isFetching

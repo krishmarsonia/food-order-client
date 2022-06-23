@@ -16,6 +16,7 @@ import {
   selectUserName,
   selectAdmin,
   seletId,
+  selectToken,
 } from "../../redux/user/user-selectors";
 import {
   CartEmpty,
@@ -33,11 +34,13 @@ import {
   setCurrentUserName,
   setFoodData,
   setUserId,
+  setToken,
 } from "../../redux/user/user-actions";
 
 import "./navbar.css";
 
 function NavbarComponent(props) {
+  // console.log("navbar" + props.selectToken);
   const datecomparer = () => {
     const dates = new Date();
     if (dates.getHours() < 12) {
@@ -49,32 +52,36 @@ function NavbarComponent(props) {
     }
   };
   const setUserCount = () => {
-    
-    if(props.count === 0 && props.cout === 0){
-      return 0
-    }else if(props.count === 0){
-      return props.cout
-    }else{
-      return props.count
+    if (props.count === 0 && props.cout === 0) {
+      return 0;
+    } else if (props.count === 0) {
+      return props.cout;
+    } else {
+      return props.count;
     }
-  }
+  };
 
   console.log(setUserCount());
   const signoutClickHandler = () => {
-    axios.post("http://localhost:5050/cartAdd", {
-      data: {
-        cartArray: props.cart,
-        // userid: props.userId,
+    axios.post(
+      "http://localhost:5050/cartAdd",
+      {
+        data: {
+          cartArray: props.cart,
+          // userid: props.userId,
+        },
       },
-    },{
-      headers:{
-        Authorization: 'Bearer ' + localStorage.getItem('token')
+      {
+        headers: {
+          Authorization: "Bearer " + props.selectToken,
+        },
       }
-    });
+    );
 
     console.log(props.cart);
-    localStorage.removeItem("token");
-    localStorage.removeItem("userName");
+    // localStorage.removeItem("token");
+    props.setToken(null);
+    // localStorage.removeItem("userName");
     props.CartEmpty();
     props.setCurrentUserName("");
     props.setAdmin(false);
@@ -107,17 +114,17 @@ function NavbarComponent(props) {
 
             {/* <Nav.Link ><CartIcon style={{height: 25, width: 20}}/></Nav.Link> */}
           </Nav>
-
-          {localStorage.getItem("token") ? (
-            <Nav.Link as={Link} to="/" onClick={signoutClickHandler}>
-              <span className="signOut">Signout</span>
-            </Nav.Link>
+            
+          {props.selectToken ? (
+          <Nav.Link as={Link} to="/" onClick={signoutClickHandler}>
+            <span className="signOut">Signout</span>
+          </Nav.Link>
           ) : (
-            <Nav.Link as={Link} to="/">
-              <span className="signOut">Signin/Register</span>
-            </Nav.Link>
+          <Nav.Link as={Link} to="/">
+            <span className="signOut">Signin/Register</span>
+          </Nav.Link>
           )}
-
+          
           {props.username ? (
             <span className="heightPos">
               {["bottom"].map((placement) => (
@@ -170,6 +177,7 @@ const mapStateToProps = (state) => ({
   cart: selectCartItems(state),
   userId: seletId(state),
   cout: selectCartCount(state),
+  selectToken: selectToken(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -180,6 +188,7 @@ const mapDispatchToProps = (dispatch) => ({
   setUserId: (id) => dispatch(setUserId(id)),
   SetCartCount: (val) => dispatch(SetCartCount(val)),
   SetCartLoaded: (bol) => dispatch(SetCartLoaded(bol)),
+  setToken: (token) => dispatch(setToken(token)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavbarComponent);

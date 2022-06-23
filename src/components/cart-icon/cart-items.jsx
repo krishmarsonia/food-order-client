@@ -9,7 +9,7 @@ import {
   selectCartLoaded,
 } from "../../redux/cart/cart-selectors";
 import WithSpinner from "../Spinner/spinner";
-import { seletId } from "../../redux/user/user-selectors";
+import { seletId, selectToken } from "../../redux/user/user-selectors";
 import {
   CartSet,
   SetCartCount,
@@ -19,27 +19,26 @@ import {
 
 import "./cartIcon.css";
 
-const CartItemOnNav = ({
-  selectCartLoaded,
-  setCartLoaded,
-  setCart,
-  history,
-  cartItems,
-  SetCartCount,
-}) => {
+const CartItemOnNav = (props) => {
+  const {
+    selectCartLoaded,
+    setCartLoaded,
+    setCart,
+    history,
+    cartItems,
+    SetCartCount,
+    selectToken
+  } = props;
   const [isLoading, setIsLoading] = useState(true);
   //if cart state is empty
   useEffect(() => {
     if (selectCartLoaded === false) {
       axios
-        .get(
-          "http://localhost:5050/findcart",
-          {
-            headers: {
-              Authorization: "Bearer " + localStorage.getItem("token"),
-            },
-          }
-        )
+        .get("http://localhost:5050/findcart", {
+          headers: {
+            Authorization: "Bearer " + selectToken,
+          },
+        })
         .then((sol) => {
           console.log(sol.data.cart.items);
           SetCartCount(0);
@@ -56,7 +55,7 @@ const CartItemOnNav = ({
   }, [selectCartLoaded, setCartLoaded, setCart, SetCartCount]);
 
   const cartComponentClickHandler = () => {
-    if (localStorage.getItem("token")) {
+    if (selectToken) {
       history.push("/cart");
     } else {
       alert("Please Login Fist to Add the food items into the cart");
@@ -67,7 +66,7 @@ const CartItemOnNav = ({
   return (
     <div>
       {isLoading ? (
-        <WithSpinner isLoading={true} className="withspinneralign"/>
+        <WithSpinner isLoading={true} className="withspinneralign" />
       ) : (
         <div>
           {cartItems.length ? (
@@ -78,7 +77,9 @@ const CartItemOnNav = ({
                     <img className="testImg" src={it.imageUrl} alt={it.name} />
                   </Col>
                   <Col style={{ margin: "auto" }}>{it.name}</Col>
-                  <Col style={{ margin: "auto" }} md="auto">×{it.quantity}</Col>
+                  <Col style={{ margin: "auto" }} md="auto">
+                    ×{it.quantity}
+                  </Col>
                 </Row>
                 <br />
               </Container>
@@ -105,6 +106,7 @@ const mapStateToProps = (state) => ({
   cartItems: selectCartItems(state),
   selectId: seletId(state),
   selectCartLoaded: selectCartLoaded(state),
+  selectToken: selectToken(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

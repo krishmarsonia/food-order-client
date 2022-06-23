@@ -25,6 +25,11 @@ export const setUsernum = (num) => ({
   payload: num,
 });
 
+export const setToken = (token) => ({
+  type: UserActionTypes.Set_Token,
+  payload: token
+})
+
 export const setisFetching = (val) => ({
   type: UserActionTypes.Set_IsFetching,
   payload: val,

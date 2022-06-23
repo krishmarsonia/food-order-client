@@ -11,13 +11,14 @@ import {
   setAdmin,
   setUserId,
   setAuthError,
-  signinUserStart
+  signinUserStart,
+  setToken
 } from "../../redux/user/user-actions";
 
 import './sign-in.css';
 
 const SigninComponent = (props) => {
-  const { setUserId, setAdmin, setCurrentUserName, history, autherrors } = props;
+  const { setUserId, setAdmin, setCurrentUserName, history, autherrors, signinUserStart } = props;
 
   // const history = useHistory();
   const [emails, setEmail] = useState(""); //l
@@ -31,9 +32,10 @@ const SigninComponent = (props) => {
   let arr = {};
 
   const login = async () => {
-    arr.userEmail = emails;
-    arr.userPassword = passwords;
-    // console.log(arr);
+    arr.userEmail = emails
+    arr.userPassword = passwords
+    console.log('login');
+    console.log(arr);
     
     signinUserStart(arr);
     // history.push('/home');
@@ -102,8 +104,9 @@ const SigninComponent = (props) => {
   };
 
   const logSubmit = () => {
-    // if(!validSignin && !validSigninPassword){
     login();
+    console.log("hii there");
+    // if(!validSignin && !validSigninPassword){
     // }else{
     //   setError("please login with proper credientials");
     // }
@@ -163,6 +166,7 @@ const mapDispatchToProps = (dispatch) => ({
   setUserId: (id) => dispatch(setUserId(id)),
   setAdmin: (admin) => dispatch(setAdmin(admin)),
   signinUserStart: (data) => dispatch(signinUserStart(data)),
+  setToken: (token) => dispatch(setToken(token)),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SigninComponent));

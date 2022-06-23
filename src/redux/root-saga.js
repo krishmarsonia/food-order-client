@@ -1,7 +1,7 @@
 import { call, all } from "redux-saga/effects";
 
-import { fetchCollectionsStart } from "./user/user-sagas";
+import { fetchCollectionsStart, loginUserStart } from "./user/user-sagas";
 
 export default function* rootSaga() {
-  yield all([call(fetchCollectionsStart)]);
+  yield all([call(fetchCollectionsStart), call(loginUserStart)]);
 }

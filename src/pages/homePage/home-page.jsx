@@ -9,11 +9,12 @@ import NavbarComponent from "../../components/Navbar/navbar";
 import { SetCartCount } from "../../redux/cart/cart-actions";
 import { selectCartLoaded } from "../../redux/cart/cart-selectors";
 import CarouselComponent from "../../components/Carousel/Carousel";
+import { selectToken } from "../../redux/user/user-selectors";
 
 import "./home-page.css";
 
-const HomePage = ({ selectCartLoaded, setCount }) => {
-  const token = localStorage.getItem("token");
+const HomePage = ({ selectCartLoaded, setCount, selectToken }) => {
+  const token = selectToken;
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const HomePage = ({ selectCartLoaded, setCount }) => {
       axios
         .get("http://localhost:5050/findcount", {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + token,
           },
         })
         .then((res) => {
@@ -66,6 +67,7 @@ const HomePage = ({ selectCartLoaded, setCount }) => {
 
 const mapStateToProps = (state) => ({
   selectCartLoaded: selectCartLoaded(state),
+  selectToken: selectToken(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 import NavbarComponent from "../../components/Navbar/navbar";
 import AdminForm from "../../components/Admin-Form/Admin-Form";
+import { selectToken } from "../../redux/user/user-selectors";
 
 import "./admin-food.css";
 
-const AdminFood = () => {
+const AdminFood = (props) => {
+  const {selectToken} = props;
   const [type, setType] = useState("");
   const [name, setName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -28,7 +31,7 @@ const AdminFood = () => {
         },
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + selectToken,
           },
         }
       )
@@ -140,4 +143,8 @@ const AdminFood = () => {
   );
 };
 
-export default AdminFood;
+const mapStateToProps = (state) => ({
+  selectToken: selectToken(state)
+})
+
+export default connect(mapStateToProps)(AdminFood);

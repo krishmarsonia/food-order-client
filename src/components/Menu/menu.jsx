@@ -11,7 +11,7 @@ import {
 } from "../../redux/user/user-actions";
 import WithSpinner from "../Spinner/spinner";
 import { setFoodData } from "../../redux/user/user-actions";
-import { selectFoodData } from "../../redux/user/user-selectors";
+import { selectFoodData, selectToken } from "../../redux/user/user-selectors";
 import {
   selectisfetching,
   selectboolFoodData,
@@ -28,6 +28,7 @@ const Menu = ({
   fetchCollectionStart,
   AddItemToCart,
   selectboolFoodData,
+  selectToken,
 }) => {
   // console.log(props.prop.match.params.foodId)
   const fId = match.params.foodId;
@@ -53,10 +54,9 @@ const Menu = ({
   // useEffect(() => {
   // redux thunk
   if (!foodArr) {
-    
     // setisLoading(true);
     fetchCollectionStart();
-    
+
     // setItem(item);
   } else {
     console.log("KHello");
@@ -67,7 +67,7 @@ const Menu = ({
   // useEffect(() => {
   function BtnClickHandler(item) {
     // console.log(item);
-    if (localStorage.getItem("token")) {
+    if (selectToken) {
       AddItemToCart(item);
     } else {
       alert("Please Login Fist to Add the food items into the cart");
@@ -98,7 +98,6 @@ const Menu = ({
               .filter((fs) => fs.type === stypes)
               .map((i) => (
                 <div key={i._id}>
-                  
                   <Row className="rows">
                     <Col xs={2}>
                       <img
@@ -161,6 +160,7 @@ const mapStateToProps = (state) => ({
   foodArr: selectFoodData(state),
   isFetching: selectisfetching(state),
   selectboolFoodData: selectboolFoodData(state),
+  selectToken: selectToken(state),
 });
 
 const MapDispatchToProps = (dispatch) => ({

@@ -13,14 +13,16 @@ import {
   SetCartCount,
   SetCartLoaded,
 } from "../../redux/cart/cart-actions";
+import { selectToken } from '../../redux/user/user-selectors';
 
 const MenuPage = ({
   selectCartLoaded,
   SetCartLoaded,
   setCart,
   SetCartCount,
+  selectToken
 }) => {
-  const token = localStorage.getItem("token");
+  const token = selectToken;
   const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
@@ -28,7 +30,7 @@ const MenuPage = ({
       axios
         .get("http://localhost:5050/findcart", {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("token"),
+            Authorization: "Bearer " + token,
           },
         })
         .then((res) => {
@@ -63,6 +65,7 @@ const MenuPage = ({
 
 const mapStateToProps = (state) => ({
   selectCartLoaded: selectCartLoaded(state),
+  selectToken: selectToken(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
